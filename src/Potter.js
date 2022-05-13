@@ -19,20 +19,24 @@ class Potter {
       let totalPrice = 0;
 
       this.basket.map((v) => {
-        for (let i = 0; i < combinations.length; i++) {
-          console.log(v, combinations[i]);
-          if (combinations[i].has(v)) {
-            if (i == combinations.length - 1) {
-              combinations.push(new Set([v]));
+        const bigImproveIdx = combinations.findIndex((combination) => combination.size == 3 && !combination.has(v));
+        if (bigImproveIdx != -1) {
+          combinations[bigImproveIdx].add(v);
+        } else {
+          for (let i = 0; i < combinations.length; i++) {
+            if (combinations[i].has(v)) {
+              if (i == combinations.length - 1) {
+                combinations.push(new Set([v]));
+                break;
+              }
+            } else {
+              combinations[i].add(v);
               break;
             }
-          } else {
-            combinations[i].add(v);
-            break;
           }
         }
-        console.log(combinations);
       });
+
       for (let i = 0; i < combinations.length; i++) {
         const uniqueBookNumber = combinations[i].size;
         switch (uniqueBookNumber) {
