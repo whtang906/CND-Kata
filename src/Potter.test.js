@@ -44,4 +44,16 @@ describe('Potter', () => {
     potter.setBasket([1, 2, 2, 3, 4, 5]);
     expect(potter.price()).toBe(8 + 8 * 5 * 0.75);
   });
+
+  test('Test on edge cases', () => {
+    potter.setBasket([1, 1, 2, 2, 3, 3, 4, 5]);
+    expect(potter.price()).toBe(2 * (8 * 4 * 0.8));
+    potter.setBasket([
+      1, 1, 1, 1, 1, 
+      2, 2, 2, 2, 2, 
+      3, 3, 3, 3, 
+      4, 4, 4, 4, 4, 
+      5, 5, 5, 5]);
+    expect(potter.price()).toBe(3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8));
+  });
 });
