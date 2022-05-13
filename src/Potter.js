@@ -20,13 +20,18 @@ class Potter {
 
       this.basket.map((v) => {
         for (let i = 0; i < combinations.length; i++) {
+          console.log(v, combinations[i]);
           if (combinations[i].has(v)) {
-            combinations.push(new Set([v]));
+            if (i == combinations.length - 1) {
+              combinations.push(new Set([v]));
+              break;
+            }
           } else {
             combinations[i].add(v);
+            break;
           }
-          break;
         }
+        console.log(combinations);
       });
       for (let i = 0; i < combinations.length; i++) {
         const uniqueBookNumber = combinations[i].size;
