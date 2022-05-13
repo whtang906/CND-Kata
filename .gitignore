@@ -38,7 +38,6 @@ npm-debug.log
 npm-debug.log*
 yarn-error.log*
 junit.xml
-package-lock.json
 
 *.tsbuildinfo
 api-extractor.json
@@ -53,3 +52,4 @@ api-extractor.json
 **/.pnp.*
 
 crowdin-cli.jar
+jest-results.json
