@@ -23,7 +23,7 @@ describe('Potter', () => {
     expect(potter.price()).toBe(24);
   });
 
-  test('Test on basic basket', () => {
+  test('Test on simple discount basket', () => {
     potter.setBasket([1, 2]);
     expect(potter.price()).toBe(8 * 2 * 0.95);
     potter.setBasket([1, 3, 5]);
