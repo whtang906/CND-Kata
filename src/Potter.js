@@ -15,30 +15,34 @@ class Potter {
     if (!this.#isBasketValid()) {
       return 'Invalid basket, we cannot calculate the price!';
     } else {
-      let combinations = [new Set()];
+      let collections = [new Set()]; // Use Set to make unique collection
       let totalPrice = 0;
 
       this.basket.map((v) => {
-        const bigImproveIdx = combinations.findIndex((combination) => combination.size == 3 && !combination.has(v));
+        // Check if there is any existing collection with size of 3 doesnt contain the element
+        const bigImproveIdx = collections.findIndex((collection) => collection.size == 3 && !collection.has(v));
         if (bigImproveIdx != -1) {
-          combinations[bigImproveIdx].add(v);
+          // Directly assign to the collection with size of 3
+          collections[bigImproveIdx].add(v);
         } else {
-          for (let i = 0; i < combinations.length; i++) {
-            if (combinations[i].has(v)) {
-              if (i == combinations.length - 1) {
-                combinations.push(new Set([v]));
+          // Loop until find a collection that doesnt contain the element
+          for (let i = 0; i < collections.length; i++) {
+            if (collections[i].has(v)) {
+              if (i == collections.length - 1) {
+                collections.push(new Set([v]));
                 break;
               }
             } else {
-              combinations[i].add(v);
+              // Create a new collection if no suitable existing collection
+              collections[i].add(v);
               break;
             }
           }
         }
       });
 
-      for (let i = 0; i < combinations.length; i++) {
-        const uniqueBookNumber = combinations[i].size;
+      for (let i = 0; i < collections.length; i++) {
+        const uniqueBookNumber = collections[i].size;
         switch (uniqueBookNumber) {
           case 5:
           case 4:
