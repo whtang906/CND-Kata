@@ -33,4 +33,15 @@ describe('Potter', () => {
     potter.setBasket([1, 2, 3, 4, 5]);
     expect(potter.price()).toBe(8 * 5 * 0.75);
   });
+
+  test('Test on several discounts basket', () => {
+    potter.setBasket([1, 1, 2]);
+    expect(potter.price()).toBe(8 + 8 * 2 * 0.95);
+    potter.setBasket([1, 1, 2, 2]);
+    expect(potter.price()).toBe(2 * (8 * 2 * 0.95));
+    potter.setBasket([1, 1, 2, 3, 3, 4]);
+    expect(potter.price()).toBe(8 * 4 * 0.8 + 8 * 2 * 0.95);
+    potter.setBasket([1, 2, 2, 3, 4, 5]);
+    expect(potter.price()).toBe(8 + 8 * 5 * 0.75);
+  });
 });
